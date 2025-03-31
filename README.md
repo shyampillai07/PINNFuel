@@ -46,4 +46,4 @@ python app.py
 This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
-For queries or contributions, contact **Shyam Pillai** at [shyam.m.pillai71@gmail.com](mailto:shyam.m.pillai71@gmail.com).
+For queries or contributions, contact **Me** at [shyam.m.pillai71@gmail.com](mailto:shyam.m.pillai71@gmail.com).
