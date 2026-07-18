@@ -1,139 +1,232 @@
+<div align="center">
+
 # PINNFuel
 
-PINNFuel is a machine learning fuel consumption predictor that estimates how much fuel a vehicle will consume based on realistic driving conditions, engine specifications, and environmental factors.
+Machine Learning-Based Fuel Consumption Prediction System
 
-## What It Does
+A Python application that predicts fuel consumption, mileage efficiency, and driving range using a Random Forest regression model trained on realistic synthetic driving scenarios.
 
-- Predicts fuel consumption (L/100km) for cars and motorcycles
-- Calculates mileage efficiency (km/L)
-- Estimates maximum driving range based on available fuel
-- Models realistic aerodynamic and mechanical factors
-- Visualizes consumption vs speed curves
+<p align="center">
 
-## Key Features
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge)
+![Machine Learning](https://img.shields.io/badge/Random%20Forest-0A7B83?style=for-the-badge)
 
-- **Engine CC-based modeling**: Uses actual engine displacement in cubic centimeters for accurate base consumption
-  - Hatchback: 800–2000 cc
-  - Sedan: 1200–3500 cc
-  - SUV: 1500–5000 cc
-  - Pickup: 2000–6000 cc
-  - Van: 1500–4000 cc
-  - Motorcycle: 50–1800 cc
+</p>
 
-- **Comprehensive consumption factors**:
-  - Engine displacement and vehicle type weight penalties
-  - Aerodynamic speed penalties with optimal speed curves (60 km/h for motorcycles, 75 km/h for cars)
-  - Load impact (reduced for motorcycles)
-  - AC usage (cars only)
-  - Tire pressure effects
-  - Vehicle age degradation
-  - Traffic conditions (light, moderate, heavy)
+</div>
 
-- **Realistic consumption ranges**:
-  - Motorcycles: 1.5–15.0 L/100km
-  - Cars: 3.5–35.0 L/100km
 
-- **Machine learning model**: Random Forest with 100 estimators trained on 8,000 synthetic scenarios
-- **Vehicle-specific physics**: Separate logic for motorcycles vs cars
+
+## Overview
+
+PINNFuel is a machine learning application that estimates vehicle fuel consumption based on engine specifications, driving conditions, environmental factors, and vehicle characteristics.
+
+The system predicts:
+
+- Fuel Consumption (L/100 km)
+- Mileage Efficiency (km/L)
+- Maximum Driving Range
+- Speed vs Fuel Consumption Curve
+
+The prediction model is trained using **8,000 synthetic driving scenarios** generated from realistic vehicle physics.
+
+
+
+## Features
+
+- Random Forest Regression Model
+- Engine CC-Based Consumption Modeling
+- Vehicle-Specific Physics
+- Aerodynamic Speed Analysis
+- Traffic Condition Adjustment
+- Tire Pressure Effects
+- Vehicle Age Degradation
+- Load Impact Calculation
+- Fuel Range Estimation
+- Consumption Visualization
+
+
+
+## Technology Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Python | Core Programming Language |
+| Scikit-Learn | Machine Learning |
+| NumPy | Numerical Computation |
+| Matplotlib | Data Visualization |
+
+
+
+## Architecture
+
+```mermaid
+flowchart TD
+
+A[Generate Synthetic Dataset]
+
+B[Train Random Forest Model]
+
+C[User Input]
+
+D[Feature Processing]
+
+E[Fuel Consumption Prediction]
+
+F[Mileage Calculation]
+
+G[Driving Range Estimation]
+
+H[Speed vs Consumption Graph]
+
+I[Prediction Results]
+
+A --> B
+
+B --> C
+
+C --> D
+
+D --> E
+
+E --> F
+
+F --> G
+
+G --> H
+
+H --> I
+```
+
+
 
 ## Project Structure
 
-- `app.py`: Main predictor script with model training and interactive interface
-- `requirements.txt`: Python package dependencies
-- `README.md`: Documentation
+```text
+PINNFuel/
 
-## User Inputs
+├── app.py
+├── requirements.txt
+└── README.md
+```
 
-The interactive prompt asks for:
 
-1. **Vehicle type**: hatchback, sedan, suv, pickup, van, or motorcycle
-2. **Engine capacity (CC)**: Range depends on vehicle type
-3. **Average driving speed (km/h)**: 10–160 km/h
-4. **Extra load/passengers (kg)**: 
-   - Motorcycles: max 150 kg
-   - Cars: max 1000 kg
-5. **AC usage (yes/no)**: Cars only (skipped for motorcycles)
-6. **Tire pressure (psi)**:
-   - Motorcycles: 20–45 psi
-   - Cars: 24–50 psi
-7. **Vehicle age (years)**: 0–40 years
-8. **Traffic conditions**: light, moderate, or heavy
-9. **Available fuel (liters)**: 0.5–200 liters
 
-## Requirements
+## Installation
 
-- Python 3.9 or newer
-- Dependencies: numpy, matplotlib, scikit-learn (specified in `requirements.txt`)
+Clone the repository
 
-Install:
+```bash
+git clone https://github.com/yourusername/PINNFuel.git
+
+cd PINNFuel
+```
+
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Run
+Run
 
 ```bash
 python app.py
 ```
 
-The script will:
-1. Train the model on 8,000 synthetic scenarios
-2. Prompt for your vehicle and driving scenario
-3. Display predicted consumption and range
-4. Show a speed vs consumption curve for your inputs
 
-### Example Output
 
-**Sedan (2000cc) at 80 km/h, 50kg load, AC on, moderate traffic:**
+## User Inputs
+
+| Parameter | Range |
+|-----------|-------|
+| Vehicle Type | Hatchback, Sedan, SUV, Pickup, Van, Motorcycle |
+| Engine Capacity | 50–6000 cc |
+| Speed | 10–160 km/h |
+| Load | Vehicle Dependent |
+| Air Conditioning | Cars Only |
+| Tire Pressure | Vehicle Dependent |
+| Vehicle Age | 0–40 Years |
+| Traffic | Light, Moderate, Heavy |
+| Fuel Available | 0.5–200 L |
+
+
+
+## Supported Vehicles
+
+| Vehicle | Engine Range |
+|----------|-------------:|
+| Hatchback | 800–2000 cc |
+| Sedan | 1200–3500 cc |
+| SUV | 1500–5000 cc |
+| Pickup | 2000–6000 cc |
+| Van | 1500–4000 cc |
+| Motorcycle | 50–1800 cc |
+
+
+
+## Machine Learning Model
+
+| Property | Value |
+|----------|-------|
+| Algorithm | Random Forest Regressor |
+| Estimators | 100 |
+| Training Samples | 8,000 |
+| Target Variable | Fuel Consumption |
+| Output Metrics | Fuel Consumption, Mileage, Driving Range |
+
+
+
+## Sample Output
+
+```text
+Vehicle Type            Sedan
+
+Engine Capacity         2000 cc
+
+Average Speed           80 km/h
+
+Estimated Consumption   6.84 L/100 km
+
+Mileage                 14.62 km/L
+
+Maximum Range           877.2 km
 ```
-Estimated fuel consumption : 6.84 L/100km
-Estimated mileage          : 14.62 km/L
-Max distance on current tank: 877.2 km
-```
 
-**Motorcycle (500cc) at 80 km/h, 30kg load, no AC, light traffic:**
-```
-Estimated fuel consumption : 3.42 L/100km
-Estimated mileage          : 29.24 km/L
-Max distance on current tank: 438.6 km
-```
 
-## Model Details
 
-### Consumption Calculation
+## Future Enhancements
 
-**Base consumption** = (Engine CC ÷ 1000) × Multiplier + Weight Penalty
-- Motorcycle multiplier: 2.0 L/100km per 1000cc
-- Car multiplier: 3.5 L/100km per 1000cc
-- Vehicle type weight penalties: Hatchback (0), Sedan (+0.5), SUV (+2.0), Pickup (+2.5), Van (+2.0), Motorcycle (0)
+- Real-world OBD-II Data Integration
+- Deep Learning Regression Models
+- Carbon Emission Prediction
+- Fuel Cost Estimation
+- Weather-Based Consumption Analysis
+- REST API
+- Streamlit Dashboard
+- Docker Deployment
 
-**Speed penalty**: Quadratic deviation from optimal speed
-- Motorcycle optimal: 60 km/h
-- Car optimal: 75 km/h
-- Formula: `((speed - optimal) / 20)² × 0.4`
-- Low-speed penalty: `(40 - speed) × 0.05` if speed < 40 km/h
 
-**Other penalties**:
-- Load: 0.003 × load_kg (motorcycles: 0.5× multiplier)
-- AC: 0.8 + (engine_cc / 5000.0) L/100km (cars only)
-- Tire pressure: Penalties for under/over-inflation
-- Vehicle age: 0.08 L/100km per year
-- Traffic: Light (0), Moderate (+1.0), Heavy (+2.5) L/100km
-
-### Training Data
-
-- **8,000 scenarios** with random vehicle, engine, speed, load, AC, tire pressure, age, and traffic combinations
-- **Random Forest** model (100 estimators) for non-linear consumption patterns
-- **Test accuracy**: Typical MAE ~0.4 L/100km, R² ~0.98
-
-## Notes
-
-- Predictions use synthetic but realistic driving patterns, not real-world telemetry
-- Motorcycle and car models are separately optimized for accurate physics
-- Results are estimates for trip planning; actual consumption varies by driving style
-- To improve accuracy, retrain with real-world OBD or fuel pump data
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
+
+
+
+## Contact
+
+<p align="left">
+<a href="mailto:shyam.m.pillai71@gmail.com">
+<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+</a>
+
+<a href="https://linkedin.com/in/shyampillai07">
+<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+</p>
+
+For questions, feedback, or collaboration opportunities, feel free to reach out.
